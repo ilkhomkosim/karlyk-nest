@@ -97,7 +97,6 @@ export class PeriodsRange{
     end: number;
 }
 
-
 @InputType()
 class PISearch{
     @IsOptional()
@@ -140,10 +139,6 @@ class PISearch{
     @IsOptional()
     @Field(() => String, {nullable: true})
     text?: string;
-
-
-
-
 }
 
 @InputType()

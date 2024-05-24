@@ -84,11 +84,11 @@ export class Property{
 }
 
 @ObjectType()
-export class Properties{
+export class Properties {
     @Field(() => [Property])
     list: Property[];
 
     @Field(() => [TotalCounter], {nullable: true})
-    metaCounter?: TotalCounter[];
+    metaCounter: TotalCounter[];
 }
 

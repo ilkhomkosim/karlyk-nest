@@ -104,7 +104,7 @@ export class PropertyService {
 
     public async getProperties(memberId: ObjectId, input: PropertiesInquiry): Promise<Properties> {
         const match: T = {propertyStatus: PropertyStatus.ACTIVE};
-        const sort: T = { [input?.sort ?? 'createdAt'] : input?.direction ?? Direction.DSC};
+        const sort: T = { [input?.sort ?? 'createdAt']: input?.direction ?? Direction.DSC};
 
         this.shapeMatchQuery(match, input);
         console.log('match:', match);
@@ -120,7 +120,7 @@ export class PropertyService {
                             {$limit: input.limit},
                             // meLiked
                             lookupMember,
-                            {$unwind: '$memberData'},
+                            { $unwind: '$memberData'},
                         ],
                         metaCounter: [{$count: 'total'}],
                     },
@@ -155,10 +155,10 @@ export class PropertyService {
         if(periodsRange) match.createdAt = {$gte: pricesRange.start, $lte: pricesRange.end};
         if(squaresRange) match.propertySquare = {$gte: squaresRange.start, $lte: squaresRange.end};
 
-        if(text) match.propertyTitle = {$regex: new RegExp(text, 'i')};
+        if(text) match.propertyTitle = {$regex: new RegExp(text, 'i') };
         if(options) {
             match['$or'] = options.map((ele) => {
-                return {[ele]: true};
+                return { [ele]: true};
             });
         }
     }
@@ -222,5 +222,34 @@ export class PropertyService {
         .exec();
         if(!result.length) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
         
-        return result[0]    }
+        return result[0]    
+    }
+
+    public async updatePropertyByAdmin(input: PropertyUpdate): Promise<Property> {
+        let {propertyStatus, soldAt, deletedAt} = input;
+        const search: T = {
+            _id: input._id,
+            propertyStatus: PropertyStatus.ACTIVE,
+        };
+
+        if(propertyStatus === PropertyStatus.SOLD) soldAt = moment().toDate();
+        else if (propertyStatus === PropertyStatus.DELETE) deletedAt = moment().toDate();
+
+        const result = await this.propertyModel
+        .findOneAndUpdate(search, input, {
+            new: true,
+        })
+        .exec();
+        if(!result) throw new InternalServerErrorException(Message.UPDATE_FAILED);
+
+        if(soldAt || deletedAt) {
+            await this.memberService.memberStatsEditor({
+                _id: result.memberId,
+                targetKey: 'memberProperties',
+                modifier: -1,
+            });
+        }
+
+        return result;
+    }
 }
