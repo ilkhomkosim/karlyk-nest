@@ -120,7 +120,7 @@ export class PropertyService {
                             {$limit: input.limit},
                             // meLiked
                             lookupMember,
-                            { $unwind: '$memberData'},
+                            { $unwind: '$memberData' },
                         ],
                         metaCounter: [{$count: 'total'}],
                     },
@@ -129,7 +129,7 @@ export class PropertyService {
             .exec();
             if(!result.length) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
 
-            return result[0]
+            return result[0];
     }
 
     private shapeMatchQuery(match: T , input: PropertiesInquiry): void {
@@ -152,7 +152,7 @@ export class PropertyService {
         if(typeList) match.propertyType = {$in: typeList};
 
         if(pricesRange) match.propertyPrice = {$gte: pricesRange.start, $lte: pricesRange.end};
-        if(periodsRange) match.createdAt = {$gte: pricesRange.start, $lte: pricesRange.end};
+        if(periodsRange) match.createdAt = {$gte: periodsRange.start, $lte: periodsRange.end};
         if(squaresRange) match.propertySquare = {$gte: squaresRange.start, $lte: squaresRange.end};
 
         if(text) match.propertyTitle = {$regex: new RegExp(text, 'i') };
