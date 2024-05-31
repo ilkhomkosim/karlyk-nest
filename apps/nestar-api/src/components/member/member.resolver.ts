@@ -27,14 +27,18 @@ export class MemberResolver {
     }
 
     @Mutation(() => Member)
-    public async login(@Args("input") input: LoginInput): Promise<Member> {
+    public async login(
+        @Args("input") input: LoginInput
+    ): Promise<Member> {
             console.log("Mutation: login");
             return await this.memberService.login(input); 
     }
 
     @UseGuards(AuthGuard)
     @Query(() => String)
-    public async checkAuth(@AuthMember('memberNick') memberNick: string): Promise<string> {
+    public async checkAuth(
+        @AuthMember('memberNick') memberNick: string //
+    ): Promise<string> {
         console.log("Query: checkAuth");
         console.log("memberNick:", memberNick);
         return ` Hi ${memberNick}`;    
