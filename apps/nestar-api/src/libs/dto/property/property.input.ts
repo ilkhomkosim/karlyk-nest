@@ -237,3 +237,16 @@ class PISearch{
         search: ALPSearch
     }
 
+    @InputType()
+    export class OdinaryInquiry{
+        @IsNotEmpty()
+        @Min(1)
+        @Field(() => Int)
+        page: number;
+
+        @IsNotEmpty()
+        @Min(1)
+        @Field(() => Int)
+        limit: number;
+    }
+
