@@ -67,7 +67,7 @@ export class FollowService {
         const result = await this.followModel
             .aggregate([
                 {$match: match},
-                {$sort: {createdAt: Direction.DSC}},
+                {$sort: {createdAt: Direction.DESC}},
                 {
                     $facet: {
                         list: [
@@ -98,7 +98,7 @@ export class FollowService {
         const result = await this.followModel
             .aggregate([
                 {$match: match},
-                {$sort: {createdAt: Direction.DSC}},
+                {$sort: {createdAt: Direction.DESC}},
                 {
                     $facet: {
                         list: [

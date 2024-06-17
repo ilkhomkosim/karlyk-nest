@@ -97,7 +97,7 @@ export class PropertyService {
 
     public async getProperties(memberId: ObjectId, input: PropertiesInquiry): Promise<Properties> {
         const match: T = {propertyStatus: PropertyStatus.ACTIVE};
-        const sort: T = { [input?.sort ?? 'createdAt']: input?.direction ?? Direction.DSC};
+        const sort: T = { [input?.sort ?? 'createdAt']: input?.direction ?? Direction.DESC};
 
         this.shapeMatchQuery(match, input);
         console.log('match:', match);
@@ -172,7 +172,7 @@ export class PropertyService {
             memberId: memberId,
             propertyStatus: propertyStatus ??{$ne: PropertyStatus.DELETE},
         };
-        const sort: T = {[input?.sort ?? 'createdAt'] : input?.direction ?? Direction.DSC};
+        const sort: T = {[input?.sort ?? 'createdAt'] : input?.direction ?? Direction.DESC};
 
         const result = await this.propertyModel
         .aggregate([
@@ -218,7 +218,7 @@ export class PropertyService {
     public async getAllPropertiesByAdmin(input: AllPropertiesInquiry): Promise<Properties> {
         const {propertyStatus, propertyLocationList} = input.search;
         const match: T = {}
-        const sort: T = {[input?.sort ?? 'createdAt'] : input?.direction ?? Direction.DSC};
+        const sort: T = {[input?.sort ?? 'createdAt'] : input?.direction ?? Direction.DESC};
 
         if(propertyStatus) match.propertyStatus = propertyStatus;
         if(propertyLocationList) match.propertyLocation = {$in: propertyLocationList};
