@@ -90,7 +90,7 @@ export class BoardArticleService {
     public async getBoardArticles(memberId: ObjectId, input: BoardArticlesInquiry): Promise<BoardArticles> {
         const {articleCategory, text} = input.search;
         const match: T = {articleStatus: BoardArticleStatus.ACTIVE};
-        const sort: T = {[input?.sort ?? 'createdAt']: input?.direction ?? Direction.DSC};
+        const sort: T = {[input?.sort ?? 'createdAt']: input?.direction ?? Direction.DESC};
 
         if(articleCategory) match.articleCategory = articleCategory;
         if(text) match.articleTitle = {$regex: new RegExp(text, 'i')};
@@ -143,7 +143,7 @@ export class BoardArticleService {
     public async getAllBoardArticlesByAdmin(input: AllBoardArticlesInquiry): Promise<BoardArticles> {
         const {articleStatus, articleCategory} = input.search;
         const match: T = {};
-        const sort: T = {[input?.sort ?? 'createdAt']: input?.direction ?? Direction.DSC};
+        const sort: T = {[input?.sort ?? 'createdAt']: input?.direction ?? Direction.DESC};
 
         if(articleStatus) match.articleStatus = articleStatus;
         if(articleCategory) match.articleCategory = articleCategory;
