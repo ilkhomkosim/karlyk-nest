@@ -1,7 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PropertyService } from './property.service';
 import { Properties, Property } from '../../libs/dto/property/property';
-import { AgentPropertiesInquiry, AllPropertiesInquiry, OdinaryInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
+import { AgentPropertiesInquiry, AllPropertiesInquiry, OrdinaryInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
 import { MemberType } from '../../libs/enums/member.enum';
 import { UseGuards } from '@nestjs/common';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -65,7 +65,7 @@ export class PropertyResolver {
     @UseGuards(AuthGuard)
     @Query((returns) => Properties)
     public async getFavorites(
-        @Args('input') input: OdinaryInquiry,
+        @Args('input') input: OrdinaryInquiry,
         @AuthMember('_id') memberId: ObjectId,
     ): Promise<Properties> {
         console.log('Query: getFavorites');
@@ -75,7 +75,7 @@ export class PropertyResolver {
     @UseGuards(AuthGuard)
     @Query((returns) => Properties)
     public async getVisited(
-        @Args('input') input: OdinaryInquiry,
+        @Args('input') input: OrdinaryInquiry,
         @AuthMember('_id') memberId: ObjectId,
     ): Promise<Properties> {
         console.log('Query: getVisited');

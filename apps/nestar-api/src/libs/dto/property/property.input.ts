@@ -238,7 +238,7 @@ class PISearch{
     }
 
     @InputType()
-    export class OdinaryInquiry{
+    export class OrdinaryInquiry{
         @IsNotEmpty()
         @Min(1)
         @Field(() => Int)
