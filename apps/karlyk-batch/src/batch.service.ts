@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Member } from 'apps/nestar-api/src/libs/dto/member/member';
-import { Property } from 'apps/nestar-api/src/libs/dto/property/property';
-import { MemberStatus, MemberType } from 'apps/nestar-api/src/libs/enums/member.enum';
-import { PropertyStatus } from 'apps/nestar-api/src/libs/enums/property.enum';
+import { Member } from 'apps/karlyk-api/src/libs/dto/member/member';
+import { Property } from 'apps/karlyk-api/src/libs/dto/property/property';
+import { MemberStatus, MemberType } from 'apps/karlyk-api/src/libs/enums/member.enum';
+import { PropertyStatus } from 'apps/karlyk-api/src/libs/enums/property.enum';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -69,7 +69,7 @@ export class BatchService {
   }
 
   getHello(): string {
-    return 'Welcome to Nestart BATCH Server!';
+    return 'Welcome to Karlyk BATCH Server!';
   }
 
 }

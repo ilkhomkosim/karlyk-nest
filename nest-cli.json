@@ -1,31 +1,31 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/nestar-api/src",
+  "sourceRoot": "apps/karlyk-api/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/nestar-api/tsconfig.app.json"
+    "tsConfigPath": "apps/karlyk-api/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/nestar-api",
+  "root": "apps/karlyk-api",
   "projects": {
-    "nestar-api": {
+    "karlyk-api": {
       "type": "application",
-      "root": "apps/nestar-api",
+      "root": "apps/karlyk-api",
       "entryFile": "main",
-      "sourceRoot": "apps/nestar-api/src",
+      "sourceRoot": "apps/karlyk-api/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/nestar-api/tsconfig.app.json"
+        "tsConfigPath": "apps/karlyk-api/tsconfig.app.json"
       }
     },
-    "nestar-batch": {
+    "karlyk-batch": {
       "type": "application",
-      "root": "apps/nestar-batch",
+      "root": "apps/karlyk-batch",
       "entryFile": "main",
-      "sourceRoot": "apps/nestar-batch/src",
+      "sourceRoot": "apps/karlyk-batch/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/nestar-batch/tsconfig.app.json"
+        "tsConfigPath": "apps/karlyk-batch/tsconfig.app.json"
       }
     }
   }
