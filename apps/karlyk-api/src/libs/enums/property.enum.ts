@@ -1,9 +1,11 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum PropertyType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+	SKIN_CARE = 'SKIN_CARE',
+	HAIR_CARE = 'HAIR_CARE',
+	MAKEUP = 'MAKEUP',
+	PERFUME = 'PERFUME',
+	PERSONAL_CARE = 'PERSONAL_CARE'
 }
 registerEnumType(PropertyType, {
 	name: 'PropertyType',
