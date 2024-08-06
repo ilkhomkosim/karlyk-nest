@@ -46,7 +46,7 @@ const PropertySchema = new Schema(
 			required: true,
 		},
 
-		propertyRooms: {
+		propertySizes: {
 			type: Number,
 			required: true,
 		},

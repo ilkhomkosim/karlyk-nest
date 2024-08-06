@@ -34,7 +34,7 @@ export class Property{
     propertyBeds: number;
 
     @Field(() => Int)
-    propertyRooms: number;
+    propertySizes: number;
 
     @Field(() => Int)
     propertyViews: number;

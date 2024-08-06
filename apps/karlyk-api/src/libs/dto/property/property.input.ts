@@ -43,7 +43,7 @@ export class PropertyInput {
     @IsInt()
     @Min(1)
     @Field(() => Int)
-    propertyRooms: number;
+    propertySizes: number;
 
     @IsNotEmpty()
     @Field(() => [String])
@@ -113,7 +113,7 @@ class PISearch{
 
     @IsOptional()
     @Field(() => [Int], {nullable: true})
-    roomsList?: Number[];
+    sizesList?: Number[];
 
     @IsOptional()
     @Field(() => [Int], {nullable: true})
