@@ -15,14 +15,21 @@ import { lookupAuthMemberLiked, lookupMember, shapeIntoMongoObjectId } from '../
 import { LikeService } from '../like/like.service';
 import { LikeInput } from '../../libs/dto/like/like.input';
 import { LikeGroup } from '../../libs/enums/like.enum';
+import { Member } from '../../libs/dto/member/member';
+import { NotificationService } from '../notifications/notification.service';
+import { MemberStatus } from '../../libs/enums/member.enum';
+import { NotificationInput} from '../../libs/dto/notification/notification.input';
+import { NotificationGroup, NotificationStatus, NotificationType } from '../../libs/enums/notification.enum';
 
 @Injectable()
 export class PropertyService {
     constructor(
         @InjectModel("Property") private readonly propertyModel: Model<Property>,
+        @InjectModel('Member') private readonly memberModel: Model<Member>,
         private  memberService: MemberService,
         private viewService: ViewService,
         private likeService: LikeService,
+        private notificationService: NotificationService,
 ) {}
 
     public async createProperty(input: PropertyInput): Promise<Property> {
@@ -209,6 +216,26 @@ export class PropertyService {
 
         const modifier: number = await this.likeService.toggleLike(input);
         const result = await this.propertyStatsEditor({ _id: likeRefId, targetKey: "propertyLikes", modifier: modifier});
+
+        //notification
+		const AuthMember: Member = await this.memberModel
+        .findOne({
+            _id: memberId,
+            memberStatus: MemberStatus.ACTIVE,
+        })
+        .exec();
+    if (!AuthMember) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
+    const notificInput 
+    : NotificationInput = {
+        notificationType: NotificationType.LIKE,
+        notificationStatus: NotificationStatus.WAIT,
+        notificationGroup: NotificationGroup.PROPERTY,
+        notificationTitle: 'Like',
+        notificationDesc: `${AuthMember.memberNick} Liked Vehicle `,
+        authorId: memberId,
+        receiverId: target.memberId,
+    };
+    await this.notificationService.createNotification(notificInput);
 
         if(!result) throw new InternalServerErrorException(Message.SOMETHING_WENT_WRONG);
 
