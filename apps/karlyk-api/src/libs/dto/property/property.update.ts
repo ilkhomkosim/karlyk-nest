@@ -24,11 +24,6 @@ export class PropertyUpdate{
     @IsOptional()
     @Length(3, 100)
     @Field(() => String, {nullable: true})
-    propertyAddress?: string;
-
-    @IsOptional()
-    @Length(3, 100)
-    @Field(() => String, {nullable: true})
     propertyTitle?: string;
 
     @IsOptional()
@@ -37,13 +32,13 @@ export class PropertyUpdate{
 
     @IsOptional()
     @Field(() => Number, {nullable: true})
-    propertySquare?: number;
+    propertyLeftCount?: number;
 
     @IsOptional()
     @IsInt()
     @Min(1)
     @Field(() => Int, {nullable: true})
-    propertyBeds?: number;
+    propertyVolumes?: number;
 
     @IsOptional()
     @IsInt()

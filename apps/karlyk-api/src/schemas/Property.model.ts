@@ -21,11 +21,6 @@ const PropertySchema = new Schema(
 			required: true,
 		},
 
-		propertyAddress: {
-			type: String,
-			required: true,
-		},
-
 		propertyTitle: {
 			type: String,
 			required: true,
@@ -36,12 +31,12 @@ const PropertySchema = new Schema(
 			required: true,
 		},
 
-		propertySquare: {
+		propertyLeftCount: {
 			type: Number,
 			required: true,
 		},
 
-		propertyBeds: {
+		propertyVolumes: {
 			type: Number,
 			required: true,
 		},

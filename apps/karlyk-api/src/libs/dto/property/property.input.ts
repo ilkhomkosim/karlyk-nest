@@ -18,11 +18,6 @@ export class PropertyInput {
     @IsNotEmpty()
     @Length(3, 100)
     @Field(() => String)
-    propertyAddress: string;
-
-    @IsNotEmpty()
-    @Length(3, 100)
-    @Field(() => String)
     propertyTitle: string;
 
     @IsNotEmpty()
@@ -31,13 +26,13 @@ export class PropertyInput {
 
     @IsNotEmpty()
     @Field(() => Number)
-    propertySquare: number;
+    propertyLeftCount: number;
 
     @IsNotEmpty()
     @IsInt()
     @Min(1)
     @Field(() => Int)
-    propertyBeds: number;
+    propertyVolumes: number;
 
     @IsNotEmpty()
     @IsInt()
@@ -80,7 +75,7 @@ export class PricesRange{
 }
 
 @InputType()
-export class SquaresRange{
+export class LeftCountsRange{
     @Field(() => Int)
     start: number;
 
@@ -117,7 +112,7 @@ class PISearch{
 
     @IsOptional()
     @Field(() => [Int], {nullable: true})
-    bedsList?: Number[];
+    volumesList?: Number[];
 
     @IsOptional()
     @IsIn(availableOptions, {each: true})
@@ -133,8 +128,8 @@ class PISearch{
     periodsRange?: PeriodsRange;
 
     @IsOptional()
-    @Field(() => SquaresRange, {nullable: true})
-    squaresRange?: SquaresRange;
+    @Field(() => LeftCountsRange, {nullable: true})
+    leftCountsRange?: LeftCountsRange;
 
     @IsOptional()
     @Field(() => String, {nullable: true})

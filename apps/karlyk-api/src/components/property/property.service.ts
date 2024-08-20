@@ -137,23 +137,23 @@ export class PropertyService {
             memberId,
             locationList,
             sizesList,
-            bedsList,
+            volumesList,
             typeList,
             periodsRange,
             pricesRange,
-            squaresRange,
+            leftCountsRange,
             options,
             text,
         } = input.search;
         if(memberId) match.memberId = shapeIntoMongoObjectId(memberId);
         if(locationList && locationList.length) match.propertyLocation = {$in: locationList};
         if(sizesList && sizesList.length) match.propertySizes = {$in: sizesList};
-        if(bedsList && bedsList.length) match.propertyBeds = {$in: bedsList};
+        if(volumesList && volumesList.length) match.propertyVolumes = {$in: volumesList};
         if(typeList && typeList.length) match.propertyType = {$in: typeList};
 
         if(pricesRange) match.propertyPrice = {$gte: pricesRange.start, $lte: pricesRange.end};
         if(periodsRange) match.createdAt = {$gte: periodsRange.start, $lte: periodsRange.end};
-        if(squaresRange) match.propertySquare = {$gte: squaresRange.start, $lte: squaresRange.end};
+        if(leftCountsRange) match.propertyLeftCount = {$gte: leftCountsRange.start, $lte: leftCountsRange.end};
 
         if(text) match.propertyTitle = {$regex: new RegExp(text, 'i') };
         if(options) {

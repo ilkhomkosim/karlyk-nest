@@ -19,19 +19,16 @@ export class Property{
     propertyLocation: PropertyLocation;
 
     @Field(() => String)
-    propertyAddress: string;
-
-    @Field(() => String)
     propertyTitle: string;
 
     @Field(() => Number)
     propertyPrice: number;
 
     @Field(() => Number)
-    propertySquare: number;
+    propertyLeftCount: number;
 
     @Field(() => Int)
-    propertyBeds: number;
+    propertyVolumes: number;
 
     @Field(() => Int)
     propertySizes: number;
