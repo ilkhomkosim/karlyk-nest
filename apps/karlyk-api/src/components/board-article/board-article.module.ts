@@ -18,18 +18,14 @@ import { NotificationModule } from '../notifications/notification.module';
 				schema: BoardArticleSchema,
 			},
 		]),
-		MongooseModule.forFeature([
-			{
-				name: 'Member',
-				schema: MemberSchema,
-			},
-		]),
+		MongooseModule.forFeature([{ name: 'Member', schema: MemberSchema }]),
 		AuthModule,
 		MemberModule,
 		ViewModule,
 		LikeModule,
 		NotificationModule,
 	],
+
 	providers: [BoardArticleResolver, BoardArticleService],
 	exports: [BoardArticleService],
 })

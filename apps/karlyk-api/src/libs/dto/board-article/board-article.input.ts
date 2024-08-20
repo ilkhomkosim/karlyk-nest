@@ -5,6 +5,7 @@ import { BoardArticleCategory, BoardArticleStatus } from '../../enums/board-arti
 import { Direction } from '../../enums/common.enum';
 import { availableBoardArticleSorts } from '../../config';
 
+
 @InputType()
 export class BoardArticleInput {
 	@IsNotEmpty()
